@@ -6,6 +6,9 @@ function end(num1, num2, num3) {
     document.getElementById('item' + num1).style.background = '#000';
     document.getElementById('item' + num2).style.background = '#000';
     document.getElementById('item' + num3).style.background = '#000';
+    for (let i = 1; i <= 9; i++) {
+        document.getElementById('item' + i).style.pointerEvents = 'none';
+    }
     setInterval(function () { title.innerHTML += '.' }, 1000);
     setTimeout(function () { location.reload() }, 4000)
 }
@@ -15,6 +18,7 @@ function winnner() {
     }
     if (squares[1] == squares[2] && squares[2] == squares[3] && squares[1] != '') {
         end(1, 2, 3)
+
     }
     else if (squares[4] == squares[5] && squares[5] == squares[6] && squares[4] != '') {
         end(4, 5, 6)
@@ -38,19 +42,22 @@ function winnner() {
         end(3, 5, 7)
     }
 }
+
 function game(id) {
     let element = document.getElementById(id);
-    if(turn && element.innerHTML == '') {
+    if (turn && element.innerHTML == '') {
         element.innerHTML = 'X';
+        
         turn = false;
         title.innerHTML = 'O';
-    } else if(!turn && element.innerHTML == '') {
+    } else if (!turn && element.innerHTML == '') {
         element.innerHTML = 'O';
         turn = true;
         title.innerHTML = 'X';
     }
-    
-    winnner();
+
+    return winnner();
+
 }
 
 
